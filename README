@@ -1,0 +1,44 @@
+# 🕷️ Agentic AI Web Scraping & Site Cloner
+
+A Node.js CLI tool to **crawl, clone, and locally serve websites**.  
+It fetches pages, assets (CSS, JS, images), rewrites links, and optionally spins up a local server to browse the cloned site.  
+This project also leverages **OpenAI** (optional future enhancement) for intelligent content processing and cleaning.
+
+---
+
+## 🚀 Features
+- 🌐 Crawl and clone websites (pages + assets)
+- 📂 Save cloned site to a local directory
+- 🔗 Rewrites links for offline usage
+- ⚡ Configurable concurrency and timeouts
+- 🤖 Respects `robots.txt` (best effort)
+- 🖥️ Serve locally with **Express**
+- 🌍 Auto-open in default browser
+- ✨ Built with:
+  - `Node.js` (ESM modules)
+  - `express`
+  - `yargs` (CLI)
+  - `got` (HTTP client)
+  - `cheerio` (HTML parsing)
+  - `p-limit` (concurrency control)
+  - `ora` (CLI spinner)
+  - `postcss` + `postcss-url` (optional CSS asset handling)
+  - `openai` (optional, for AI-based analysis)
+
+---
+
+## 📦 Installation
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/satyasandhya97/agenticAIWebScraping.git
+   cd agenticAIWebScraping
+
+2. npm install
+
+3. Add your API key in .env:-
+   OPENAI_API_KEY=your_api_key_here
+ 
+
+4. Run the cli command in terminal:-
+ node src/siteclone.js https://hitesh.ai/ --serve 3000 --open
