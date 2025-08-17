@@ -1,10 +1,9 @@
 import path from "node:path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { carouselAndClone } from "./carousel.js";
-import { startServer } from "../src/server.js";
+import { crawlingAndClone } from "./crawling.js";
+import { startServer } from "../index.js";
 
-// CLI Setup
 const argv = yargs(hideBin(process.argv))
   .scriptName("siteclone") .usage("$0 <url> [options]")
   .positional("url", { describe: "Website URL to clone", type: "string" }).option("out", {
@@ -48,11 +47,10 @@ const argv = yargs(hideBin(process.argv))
   .demandCommand(1, "Error: Website URL is required")
   .help().argv;
 
-// Extract args
-const url = argv._[0];
+
+  const url = argv._[0];
 const outDir = path.resolve(argv.out);
 
-// Validate URL
 function validateUrl(url) {
   if (!url.startsWith("http://") && !url.startsWith("https://")) {
     console.error("Error: URL must start with http:// or https://");
@@ -60,14 +58,13 @@ function validateUrl(url) {
   }
 }
 
-// Main function
 async function main() {
   validateUrl(url);
 
   console.log(`ℹ️ Starting crawl of: ${url}`);
   console.log(`📂 Output directory: ${outDir}`);
 
-  await carouselAndClone({
+  await crawlingAndClone({
     startUrl: url,
     outDir,
     maxPages: argv["max-pages"],
@@ -86,7 +83,6 @@ async function main() {
   }
 }
 
-// Run + error handling
 main().catch((err) => {
   console.error("💥 Fatal error:", err.message || err);
   process.exit(1);

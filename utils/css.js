@@ -2,6 +2,17 @@
 import postcss from "postcss";
 import postcssUrl from "postcss-url";
 
+
+export function extractUrlsFromCss(cssText) {
+  const urls = [];
+  cssText.replace(/url\(([^)]+)\)/g, (_, m) => {
+    const u = m.trim().replace(/^['\"]|['\"]$/g, "");
+    urls.push(u);
+    return _;
+  });
+  return urls;
+}
+
 export async function rewriteCssUrls(cssText, mapFn) {
   const foundUrls = [];
   const result = await postcss([
@@ -15,12 +26,3 @@ export async function rewriteCssUrls(cssText, mapFn) {
   return { rewritten: result.css, foundUrls };
 }
 
-export function extractUrlsFromCss(cssText) {
-  const urls = [];
-  cssText.replace(/url\(([^)]+)\)/g, (_, m) => {
-    const u = m.trim().replace(/^['\"]|['\"]$/g, "");
-    urls.push(u);
-    return _;
-  });
-  return urls;
-}
