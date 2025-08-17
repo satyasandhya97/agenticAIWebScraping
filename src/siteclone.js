@@ -10,7 +10,7 @@ const argv = yargs(hideBin(process.argv))
     alias: "o",
     describe: "Output directory",
     type: "string",
-    default: "dist/site",
+    default: "dist/output",
   }).option("max-pages", {
     describe: "Max number of pages to crawl",
     type: "number",
