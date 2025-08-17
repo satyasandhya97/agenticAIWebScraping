@@ -41,4 +41,4 @@ This project also leverages **OpenAI** (optional future enhancement) for intelli
  
 
 4. Run the cli command in terminal:-
- node src/siteclone.js https://hitesh.ai/ --serve 3000 --open
+ node src/siteclone.js [website_url] --serve 3000 --open
